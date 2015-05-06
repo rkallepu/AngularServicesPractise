@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Async</title>
+    <script src="../bower_components/async/lib/async.js"></script>
+    <script>
+
+        /*function retRandom(i){
+            var random_interval = ~~(Math.random() * 1000);
+            setTimeout(function(){
+                console.log(i, random_interval);
+            }, random_interval);
+        }
+        for(var i=0; i < 10; i++)
+            retRandom(i);*/
+
+        /*function retRandom(i, callback){
+            var random_interval = ~~(Math.random() * 1000);
+            setTimeout(function(){
+                console.log(i, random_interval);
+                callback(null, {
+                   i:i,
+                    interval: random_interval
+                });
+            }, random_interval);
+        }
+        var rets = [];
+        for(var i=0; i < 10; i++)
+            rets.push(retRandom.bind(null, i));
+
+        async.series(rets, function (err, results){
+            if(err)
+                console.log(err);
+            else {
+                console.log(results);
+               console.log(results.reduce(function (sum, obj) {
+                    return sum + obj.interval;
+                }, 0));
+            }
+        });*/
+        /*function retRandom(i, callback){
+            try {
+                var random_interval = ~~(Math.random() * 1000);
+                setTimeout(function () {
+                    console.log(i, random_interval);
+                    if (i === 3)
+                        throw new Error('T-Rex attack!!!!');    //unhandled error
+                    if (i === 2) {
+                        callback({
+                            error: 'Raptor Attack!!!'
+                        }, null);
+                    } else {
+                        callback(null, {
+                            i: i,
+                            interval: random_interval
+                        });
+                    }
+                }, random_interval);
+            }catch(e){
+                callback(e, null);
+            }
+
+        }
+        var rets = [];
+        for(var i=0; i < 10; i++)
+            rets.push(retRandom.bind(null, i));
+
+        async.parallel(rets, function (err, results){
+            if(err) {
+                console.log(err);
+                console.log(results);
+                console.log('asdfasdf');
+            }
+            else {
+                console.log(results);
+                console.log(results.reduce(function (sum, obj) {
+                    return sum + obj.interval;
+                }, 0));
+            }
+        });*/
+
+        function retRandom(i,result, callback){
+                var random_interval = ~~(Math.random() * 1000);
+                setTimeout(function () {
+                    console.log(i, random_interval,random_interval+result);
+                    callback(null, random_interval + result);
+                    }, random_interval);
+        }
+        var rets = [];
+        rets.push(retRandom.bind(null,0,0));
+        for(var i=1; i < 10; i++)
+            rets.push(retRandom.bind(null,i));
+
+        async.waterfall(rets, function (err, results){
+            if(err) {
+                console.log(err);
+                console.log(results);
+                //console.log('asdfasdf');
+            }
+            else {
+                console.log(results);
+                /*console.log(results.reduce(function (sum, obj) {
+                    return sum + obj.interval;
+                }, 0));*/
+            }
+        });
+    </script>
+</head>
+<body>
+
+</body>
+</html>

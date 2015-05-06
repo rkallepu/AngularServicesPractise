@@ -1,0 +1,36 @@
+<!Doctype html>
+<html ng-app="myApp">
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Digest Loop</title>
+    <script src="../bower_components/angular/angular.js"></script>
+    <script>
+        angular.module('myApp',[]).controller('MyController', function ($scope){
+            $scope.message = 'Hello';
+
+            $scope.updateText = function(){
+                $scope.message = "ng-click for button";
+                console.log($scope.message);
+            };
+
+            document.getElementById('base').addEventListener('click', function(){
+                /*$scope.message = "Click for button from the event listener";
+                console.log($scope.message);*/
+                $scope.$apply(function (){
+                    $scope.message = "Click for button from the event listener";
+                });
+                console.log($scope.message);
+            });
+        });
+    </script>
+</head>
+<body>
+        <div ng-controller="MyController">
+            <button ng-click="updateText()">Print To console</button>
+            <button id="base" >Print to console from Event Listener</button>
+            <div>
+                {{message}}
+            </div>
+        </div>
+</body>
+</html>

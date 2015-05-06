@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Contacts Application</title>
+    <script src="../bower_components/angular/angular.js"></script>
+    <script src="../bower_components/angular-route/angular-route.js"></script>
+    <script src="contacts/contacts.js"></script>
+    <script>
+        var myApp = angular.module('myApp', ['ngRoute', 'myApp.contacts']);
+        myApp.config(function ($routeProvider) {
+            //console.log('inside the config');
+            $routeProvider.when('/contacts', {
+                templateUrl: 'contacts/partials/_contact.html',
+                controller: 'ContactsController'
+            }).when('/contacts/:id', {
+                templateUrl: 'contacts/partials/_mail.html',
+                controller: 'MailController'
+            }).otherwise({
+                redirectTo: '/contacts'
+            });
+        });
+    </script>
+</head>
+<body>
+<a href="#/contacts/mail">Mails</a>
+<a href="#/contacts">Contacts</a>
+<div ng-view></div>
+</body>
+</html>

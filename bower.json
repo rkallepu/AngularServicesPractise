@@ -1,0 +1,16 @@
+{
+  "name": "magellan-May-06",
+  "version": "0.0.0",
+  "homepage": "https://github.com/rkallepu/magellan-May-06",
+  "authors": [
+    "rkallepu <rashmika23@gmail.com>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
