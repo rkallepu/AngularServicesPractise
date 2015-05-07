@@ -12,7 +12,6 @@
         <h1>List All Contacts</h1>
         <button ng-click="printList()">List</button>
         <ul>
-            <li ng-repeat="c in contacts"><a href="{{'#/contacts/' + c._id}}">{{c.name}} | {{c.email}} | {{c.tel}}</a></li>
-            <li ng-repeat="c in contacts"><a href="{{'#/contacts/' + c._id}}">{{c.name}} | {{c.email}} | {{c.tel}}</a></li>
+            <li ng-repeat="c in contacts"><a href="{{'#/contacts/' + c._id}}">{{c.name}} | {{c.email}} | {{c.tel}}</a><button ng-click="delContact($index)">Delete Contact</button></li>
         </ul>
     </section>
